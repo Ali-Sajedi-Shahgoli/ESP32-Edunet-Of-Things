@@ -30,10 +30,11 @@ void loop() {
     }
     else {
       digitalWrite(LED,LOW);
+      led_stat = false;
     }
     GOT_THE_DATA = false;
   }
-  Serial.print("HELLO RESA");
+  Serial.println("HELLO RESA");
   delay(1000);
 
 
