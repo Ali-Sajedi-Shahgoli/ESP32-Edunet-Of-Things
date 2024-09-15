@@ -1,14 +1,41 @@
 #include <Arduino.h>
 
+#define LED 2
 
+int TIME1;
+bool GOT_THE_DATA;
+bool led_stat = false;
 
 void setup() {
-  pinMode(2,OUTPUT);
+  Serial.begin(115200);
+  delay(100);
+  pinMode(LED,OUTPUT);
+   Serial.println("BOOTED");
+ 
 }
 
 void loop() {
-  digitalWrite(2,HIGH);
-  delay(200);
-  digitalWrite(2,LOW);
+  if (GOT_THE_DATA == false)
+  {
+    TIME1 = millis();
+    GOT_THE_DATA = true;
+  }
+
+  if (millis() - TIME1 >= 2000)
+  {
+    if(led_stat == false)
+    {
+      digitalWrite(LED,HIGH);
+      led_stat = true;
+    }
+    else {
+      digitalWrite(LED,LOW);
+    }
+    GOT_THE_DATA = false;
+  }
+  Serial.print("HELLO RESA");
   delay(1000);
+
+
+
 }
